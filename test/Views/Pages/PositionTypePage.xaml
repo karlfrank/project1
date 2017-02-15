@@ -1,0 +1,40 @@
+﻿<Page x:Class="ElibriumWPF.Views.Pages.PositionTypePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElibriumWPF.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1020"
+      Title="PositionTypePage"
+      Background="LightBlue">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400px"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="167*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding PositionTypes, UpdateSourceTrigger=PropertyChanged}" x:Name="lvPositionTypes" SelectionChanged="lvPositionTypes_SelectionChanged" GridViewColumnHeader.Click="lvColumnHeader_Click">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Width="45"  DisplayMemberBinding="{Binding Id, UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Id" Content="Id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="348" DisplayMemberBinding="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Name" Content="Name"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnAddPositionType" Content="Add" VerticalAlignment="Top" Grid.Column="1" Margin="15,65,32,0" Click="btnAddPositionType_Click" Height="20"/>
+        <TextBox x:Name="txtPositionTypeName" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="15,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" TextChanged="txtPositionTypeName_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="labelPositionTypeName" Content="Contact Type Name" Grid.Column="1" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"  />
+        <Button x:Name="btnDeletePositionType" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="114,65,0,0" VerticalAlignment="Top" Width="97" Click="btnDeletePositionType_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSavePositionType" Content="Save as Selected" HorizontalAlignment="Left" VerticalAlignment="Top" Width="196" Grid.Column="1" Margin="15,90,0,0" Click="btnSavePositionType_Click" Height="30" Grid.ColumnSpan="2"/>
+    </Grid>
+</Page>

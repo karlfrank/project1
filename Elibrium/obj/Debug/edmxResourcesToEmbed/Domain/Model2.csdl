@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ElibriumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Client" EntityType="Model2.Client" />
+    <EntitySet Name="Person" EntityType="Model2.Person" />
+    <EntitySet Name="PersonEmailTemplate" EntityType="Model2.PersonEmailTemplate" />
+    <EntitySet Name="ContactType" EntityType="Model2.ContactType" />
+    <EntitySet Name="EmailTemplate" EntityType="Model2.EmailTemplate" />
+    <EntitySet Name="Hobby" EntityType="Model2.Hobby" />
+    <EntitySet Name="Offer" EntityType="Model2.Offer" />
+    <EntitySet Name="PersonOffer" EntityType="Model2.PersonOffer" />
+    <AssociationSet Name="FK_CustomerClient" Association="Model2.FK_CustomerClient">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Customer" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerHasEmailTemplateCustomer" Association="Model2.FK_CustomerHasEmailTemplateCustomer">
+      <End Role="Customer" EntitySet="Person" />
+      <End Role="CustomerHasEmailTemplate" EntitySet="PersonEmailTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerHasOffersCustomer" Association="Model2.FK_CustomerHasOffersCustomer">
+      <End Role="Customer" EntitySet="Person" />
+      <End Role="CustomerHasOffers" EntitySet="PersonOffer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerHasEmailTemplateEmailTemplate" Association="Model2.FK_CustomerHasEmailTemplateEmailTemplate">
+      <End Role="EmailTemplate" EntitySet="EmailTemplate" />
+      <End Role="CustomerHasEmailTemplate" EntitySet="PersonEmailTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerHasOffersOffer" Association="Model2.FK_CustomerHasOffersOffer">
+      <End Role="Offer" EntitySet="Offer" />
+      <End Role="CustomerHasOffers" EntitySet="PersonOffer" />
+    </AssociationSet>
+    <EntitySet Name="Contact" EntityType="Model2.Contact" />
+    <AssociationSet Name="CustomerContact" Association="Model2.CustomerContact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Customer" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="ContactContactType" Association="Model2.ContactContactType">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ContactType" EntitySet="ContactType" />
+    </AssociationSet>
+    <EntitySet Name="PositionType" EntityType="Model2.PositionType" />
+    <AssociationSet Name="PersonHobby" Association="Model2.PersonHobby">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Hobby" EntitySet="Hobby" />
+    </AssociationSet>
+    <AssociationSet Name="PositionTypePerson" Association="Model2.PositionTypePerson">
+      <End Role="PositionType" EntitySet="PositionType" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessNo" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="Model2.FK_CustomerClient" FromRole="Client" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DBO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Model2.FK_CustomerClient" FromRole="Customer" ToRole="Client" />
+    <NavigationProperty Name="PersonEmailTemplate" Relationship="Model2.FK_CustomerHasEmailTemplateCustomer" FromRole="Customer" ToRole="CustomerHasEmailTemplate" />
+    <NavigationProperty Name="PersonOffer" Relationship="Model2.FK_CustomerHasOffersCustomer" FromRole="Customer" ToRole="CustomerHasOffers" />
+    <NavigationProperty Name="Contact" Relationship="Model2.CustomerContact" FromRole="Customer" ToRole="Contact" />
+    <NavigationProperty Name="Hobby" Relationship="Model2.PersonHobby" FromRole="Person" ToRole="Hobby" />
+    <NavigationProperty Name="PositionType" Relationship="Model2.PositionTypePerson" FromRole="Person" ToRole="PositionType" />
+    <Property Name="PositionTypeId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonEmailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="EmailTemplateId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="Model2.FK_CustomerHasEmailTemplateCustomer" FromRole="CustomerHasEmailTemplate" ToRole="Customer" />
+    <NavigationProperty Name="EmailTemplate" Relationship="Model2.FK_CustomerHasEmailTemplateEmailTemplate" FromRole="CustomerHasEmailTemplate" ToRole="EmailTemplate" />
+  </EntityType>
+  <EntityType Name="ContactType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contact" Relationship="Model2.ContactContactType" FromRole="ContactType" ToRole="Contact" />
+  </EntityType>
+  <EntityType Name="EmailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="Header" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PersonEmailTemplate" Relationship="Model2.FK_CustomerHasEmailTemplateEmailTemplate" FromRole="EmailTemplate" ToRole="CustomerHasEmailTemplate" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Hobby">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="Model2.PersonHobby" FromRole="Hobby" ToRole="Person" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Offer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="None" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PersonOffer" Relationship="Model2.FK_CustomerHasOffersOffer" FromRole="Offer" ToRole="CustomerHasOffers" />
+  </EntityType>
+  <EntityType Name="PersonOffer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OfferId" Type="Int32" Nullable="false" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="Model2.FK_CustomerHasOffersCustomer" FromRole="CustomerHasOffers" ToRole="Customer" />
+    <NavigationProperty Name="Offer" Relationship="Model2.FK_CustomerHasOffersOffer" FromRole="CustomerHasOffers" ToRole="Offer" />
+  </EntityType>
+  <Association Name="FK_CustomerClient">
+    <End Type="Model2.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model2.Person" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerHasEmailTemplateCustomer">
+    <End Type="Model2.Person" Role="Customer" Multiplicity="1" />
+    <End Type="Model2.PersonEmailTemplate" Role="CustomerHasEmailTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerHasEmailTemplate">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerHasOffersCustomer">
+    <End Type="Model2.Person" Role="Customer" Multiplicity="1" />
+    <End Type="Model2.PersonOffer" Role="CustomerHasOffers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerHasOffers">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerHasEmailTemplateEmailTemplate">
+    <End Type="Model2.EmailTemplate" Role="EmailTemplate" Multiplicity="1" />
+    <End Type="Model2.PersonEmailTemplate" Role="CustomerHasEmailTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmailTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerHasEmailTemplate">
+        <PropertyRef Name="EmailTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerHasOffersOffer">
+    <End Type="Model2.Offer" Role="Offer" Multiplicity="1" />
+    <End Type="Model2.PersonOffer" Role="CustomerHasOffers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerHasOffers">
+        <PropertyRef Name="OfferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Person" Relationship="Model2.CustomerContact" FromRole="Contact" ToRole="Customer" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ContactType" Relationship="Model2.ContactContactType" FromRole="Contact" ToRole="ContactType" />
+    <Property Name="ContactTypeId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="CustomerContact">
+    <End Type="Model2.Contact" Role="Contact" Multiplicity="*" />
+    <End Type="Model2.Person" Role="Customer" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContactContactType">
+    <End Type="Model2.Contact" Role="Contact" Multiplicity="*" />
+    <End Type="Model2.ContactType" Role="ContactType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ContactType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ContactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PositionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Person" Relationship="Model2.PositionTypePerson" FromRole="PositionType" ToRole="Person" />
+  </EntityType>
+  <Association Name="PersonHobby">
+    <End Type="Model2.Person" Role="Person" Multiplicity="1" />
+    <End Type="Model2.Hobby" Role="Hobby" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hobby">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PositionTypePerson">
+    <End Type="Model2.PositionType" Role="PositionType" Multiplicity="1" />
+    <End Type="Model2.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PositionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

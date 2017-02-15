@@ -1,0 +1,18 @@
+﻿SET IDENTITY_INSERT [dbo].[Client] ON
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (161, N'Esimene', N'Klient', N'1959-06-10 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (162, N'First Name', N'Last Name', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (163, N'First Name', N'Last Name', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (164, N'First Name', N'Last Name', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (165, N'Peeter', N'Nimi', N'2016-11-16 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (166, N'Jüri', N'Juure', N'2015-05-25 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (167, N'wrrwwr', N'wrwrwr', N'2016-11-16 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (168, N'We', N'werwr', N'2016-11-25 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (169, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (170, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (171, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (172, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (173, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (174, N'we', N'we', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (175, N'First Name', N'Last Name', N'1900-01-01 00:00:00')
+INSERT INTO [dbo].[Client] ([Id], [FirstName], [LastName], [DBO]) VALUES (176, N'wrwr', N'Last wr', N'2016-11-11 00:00:00')
+SET IDENTITY_INSERT [dbo].[Client] OFF

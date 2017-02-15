@@ -1,0 +1,1 @@
+﻿DELETE C FROM Client C

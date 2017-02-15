@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: Elibrium, Configuration: Debug Any CPU ------
+1>  Elibrium -> C:\Users\Mart\Source\Repos\Elibrium\test\test\bin\Debug\test.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f743b7cae49408c8b67e9aab30be7d6" Name="Diagram1" ZoomLevel="105">
+        <EntityTypeShape EntityType="Model2.Client" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="Model2.Person" Width="1.75" PointX="2.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Model2.PersonEmailTemplate" Width="2.125" PointX="7.5" PointY="1.875" />
+        <EntityTypeShape EntityType="Model2.ContactType" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.EmailTemplate" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="Model2.Hobby" Width="1.5" PointX="2.875" PointY="7.625" />
+        <EntityTypeShape EntityType="Model2.Offer" Width="1.5" PointX="7.875" PointY="7" />
+        <EntityTypeShape EntityType="Model2.PersonOffer" Width="1.5" PointX="5.5" PointY="6.875" />
+        <AssociationConnector Association="Model2.FK_CustomerClient" />
+        <AssociationConnector Association="Model2.FK_CustomerHasEmailTemplateCustomer" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.FK_CustomerHasOffersCustomer" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.FK_CustomerHasEmailTemplateEmailTemplate" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.FK_CustomerHasOffersOffer" />
+        <EntityTypeShape EntityType="Model2.Contact" Width="1.5" PointX="5.5" PointY="3.875" />
+        <AssociationConnector Association="Model2.CustomerContact" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.ContactContactType" />
+        <EntityTypeShape EntityType="Model2.PositionType" Width="1.5" PointX="9.875" PointY="5.875" />
+        <AssociationConnector Association="Model2.PersonHobby" />
+        <AssociationConnector Association="Model2.PositionTypePerson" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

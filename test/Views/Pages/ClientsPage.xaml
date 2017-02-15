@@ -1,0 +1,84 @@
+﻿<Page x:Class="ElibriumWPF.Views.ClientsPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:local="clr-namespace:ElibriumWPF.Views"
+	  mc:Ignorable="d"
+	  Title="ClientsPage" Height="481" Width="999"
+      Background="LightBlue">
+    <Page.Resources>
+        <LinearGradientBrush x:Key="Brush1" EndPoint="22.5,20" MappingMode="Absolute" StartPoint="22.5,0" Opacity="0.9">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF51FF00" Offset="0.703"/>
+            <GradientStop Color="#FF00CD09" Offset="0.36"/>
+        </LinearGradientBrush>
+    </Page.Resources>
+
+    <Grid Margin="1,-44,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="998"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btn" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="310,358,0,0" Click="add_Click" Height="19" RenderTransformOrigin="-0.93,0.737"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="22" Margin="0,373,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="labelName" Content="Name" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Height="23" Width="62"  />
+        <TextBox x:Name="txtBusinessNo" HorizontalAlignment="Left" Height="22" Margin="140,373,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+        <Label x:Name="labelBusinessNo" Content="Business No" HorizontalAlignment="Left" Margin="140,350,0,0" VerticalAlignment="Top" Height="23" Width="75"  />
+
+        <ListView ItemsSource="{Binding Clients,UpdateSourceTrigger=PropertyChanged}" Name="lvClients" SelectionChanged="lvClients_SelectionChanged" Margin="0,92,598,180" GridViewColumnHeader.Click="lvColumnHeader_Click">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Width="45"  DisplayMemberBinding="{Binding Id,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Id" AutomationProperties.IsRequiredForForm="True" FontWeight="SemiBold" Background="{DynamicResource Brush1}">Id
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Name" Background="{DynamicResource Brush1}" FontWeight="SemiBold">Name</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="148" DisplayMemberBinding="{Binding BusinessNo,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="BusinessNo" Background="{DynamicResource Brush1}" FontWeight="SemiBold">Business No</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="refresh" Content="Refresh" Click="refresh_Click" HorizontalAlignment="Left" Margin="300,65,0,0" VerticalAlignment="Top" Width="99" Height="22"/>
+        <Button x:Name="delete" Content="Delete" HorizontalAlignment="Left" Margin="310,386,0,0" VerticalAlignment="Top" Width="90" Click="delete_Click" Height="19" RenderTransformOrigin="-0.959,2"/>
+        <Label x:Name="label1" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,46,0,0" RenderTransformOrigin="1.512,0.541" Height="23" Width="47" FontWeight="SemiBold"/>
+        <Button x:Name="btn_Copy" Content="Save as Selected" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="310,412,0,0" Click="edit_Click" Height="19"/>
+        <TextBox x:Name="searchBox" Height="22
+				 " TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="0,65,0,0" RenderTransformOrigin="-2.292,-9.304" TextChanged="search" HorizontalAlignment="Left" Width="215" />
+        <ListView x:Name="lvOffers" HorizontalAlignment="Left" Height="272" VerticalAlignment="Top" Width="443" Margin="530,73,0,0"  GridViewColumnHeader.Click="lvColumnHeader_Click">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Person.Name,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Person.Name">Person</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Offer.Title,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Offer.Title">Offer</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="140" DisplayMemberBinding="{Binding Offer.DateTo,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Offer.DateTo">Active until</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Status,UpdateSourceTrigger=PropertyChanged}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Status">Status</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="activeOffers" Content="Active Offers" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,46,0,0" Width="140" FontWeight="SemiBold"/>
+    </Grid>
+</Page>
